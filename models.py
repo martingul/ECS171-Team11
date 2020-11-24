@@ -16,6 +16,11 @@ def create_sklearn_MLP():
   # create a MLPClassifier with params we found
   return MLPClassifier(hidden_layer_sizes=(24, 8), activation='logistic', solver='adam', learning_rate_init=0.005, max_iter=300)
 
+def create_sklearn_MLP(hidden_layer_sizes=(24, 8), activation='logistic', solver='adam', learning_rate_init=0.005, max_iter=300):
+    # create model with custom parameters
+  return MLPClassifier(hidden_layer_sizes=hidden_layer_sizes, activation=activation, solver=solver, learning_rate_init=learning_rate_init, max_iter=max_iter)
+
+
 def train_eval_sklearn_mlp(clf, train_X, train_y, test_X, test_y):
   mlpc_start_time = time()
   clf.fit(train_X, train_y)
@@ -41,7 +46,16 @@ def create_keras_mlp(train_X, train_y):
               metrics=['accuracy'])
   return model
 
-def train_eval_keras_mlp(model, train_X, train_y):
+def create_keras_mlp(train_X, train_y, activation='sigmoid', learning_rate=0.005, loss='mean_squared_error'):
+    # create model with custom parameters
+  model = keras.Sequential([layers.Dense(32, activation=activation, input_dim=train_X.shape[1]),
+                            layers.Dense(12, activation=activation),
+                            layers.Dense(1, activation=activation)])
+  model.compile(optimizer=tf.keras.optimizers.Adam(learning_rate=learning_rate), loss=loss, 
+              metrics=['accuracy'])
+  return model
+
+def train_eval_keras_mlp(model, train_X, train_y, test_X, test_y):
   keras_start_time = time()
   model_res = model.fit(train_X, train_y, batch_size=32, epochs=300)
   keras_train_time = time() - keras_start_time
@@ -62,6 +76,10 @@ def train_eval_keras_mlp(model, train_X, train_y):
 
 def create_svm():
   return SVC(kernel='sigmoid', class_weight='balanced', gamma='auto')
+
+def create_svm(kernel='sigmoid', class_weight='balanced', gamma='auto'):
+  # create model with custom parameters
+  return SVC(kernel=kernel, class_weight=class_weight, gamma=gamma) 
 
 def train_eval_svm(svm_clf, train_X, train_y, test_X, test_y):
   svm_start_time = time()
