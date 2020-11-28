@@ -115,9 +115,9 @@ def train_eval_keras_mlp(model, train_X, train_y, test_X, test_y):
 
 def create_svm():
   # returns a new instance of SVM classifer with the params we found worked best
-  return SVC(kernel='sigmoid', class_weight='balanced', gamma='auto')
+  return SVC(kernel='linear', class_weight='balanced', gamma='scale')
 
-def create_svm(kernel='sigmoid', class_weight='balanced', gamma='auto'):
+def create_svm(kernel='linear', class_weight='balanced', gamma='scale'):
   # return model with custom parameters
     # Args:
     #  - kernel: kernel type to use. can be one of {‘linear’, ‘poly’, ‘rbf’, ‘sigmoid’, ‘precomputed’}
@@ -191,7 +191,7 @@ def gd_keras_mlp(model, train_X, train_y):
   #  - train_X: dataframe of training set with dependent attruibutes
   #  - train_y: dataframe of training set with class attribute only
   param_grid = dict(batch_size=[100, 150, 200, 300], epochs=[150, 200, 250, 300], learn_rate=[0.001, 0.005, 0.01, 0.05])
-  gridsearch(model, param_grid, train_X, train_y)
+  grid_search(model, param_grid, train_X, train_y)
 
 def gd_mlpc(model, train_X, train_y):
   # perform gridsearch for hidden layer size, activation, and learning rate, and max iterations
@@ -203,7 +203,7 @@ def gd_mlpc(model, train_X, train_y):
   param_grid = dict(hidden_layer_sizes=[(24, 8), (20, 5), (20), (10)], 
     activation=('logistic', 'tanh', 'relu'), learning_rate_init=[0.005, 0.001, 0.05], 
     max_iter=[300, 500, 800])
-  gridsearch(model, param_grid, train_X, train_y)
+  grid_search(model, param_grid, train_X, train_y)
 
 def gd_svm(model, train_X, train_y):
   # perform gridsearch for batch size, epochs, and learning rate for the MLPClassifer model
@@ -211,9 +211,9 @@ def gd_svm(model, train_X, train_y):
   #  - model: MLPClassifier to use for gridsearch
   #  - train_X: dataframe of training set with dependent attruibutes
   #  - train_y: dataframe of training set with class attribute only
-  param_grid = dict(kernel=('linear', 'poly', 'rbf', 'sigmoid', 'precomputed'), 
+  param_grid = dict(kernel=('linear', 'poly', 'rbf', 'sigmoid'), 
     class_weight=(None, 'balanced'), gamma=('scale', 'auto', 1.2, 0.8))
-  gridsearch(model, param_grid, train_X, train_y)
+  grid_search(model, param_grid, train_X, train_y)
 
 def grid_search(model, param_grid, train_X, train_y):
   # perform gridsearch on the given model with specfied paramters
@@ -226,7 +226,8 @@ def grid_search(model, param_grid, train_X, train_y):
   #  - train_y: dataframe of training set with class attribute only
   # Returns:
   #  - grid_result: results of gridsearch
-  grid = GridSearchCV(estimator=model, param_grid=param_grid, n_jobs=-1, cv=3)
+  grid = GridSearchCV(estimator=model, param_grid=param_grid, scoring='balanced_accuracy', 
+    n_jobs=-1, cv=3)
   grid_result = grid.fit(train_X, train_y)
   
   print("Best: %f using %s" % (grid_result.best_score_, grid_result.best_params_))
