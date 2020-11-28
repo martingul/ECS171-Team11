@@ -1,1 +1,15 @@
 ECS 171
+
+## Instruction to Run the Web Demo
+
+1. Install dependencies 
+
+- fastapi
+- uvicorn
+- aiofiles
+- jinja2
+
+2. Run the server
+```python
+    python3 app.py 
+```

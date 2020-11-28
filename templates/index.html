@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
   <meta name="generator" content="Jekyll v4.1.1">
-  <title>Checkout example · Bootstrap</title>
+  <title>ECS 171 Group 11 Project Demo</title>
 
   <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/checkout/">
 
@@ -85,17 +85,102 @@
           </li>
         </ul>
 
-        <form class="card p-2">
+        <!-- <form class="card p-2">
           <div class="input-group">
             <input type="text" class="form-control" placeholder="Promo code">
             <div class="input-group-append">
               <button type="submit" class="btn btn-secondary">Redeem</button>
             </div>
           </div>
-        </form>
+        </form> -->
       </div>
       <div class="col-md-8 order-md-1">
         <h4 class="mb-3">Input</h4>
+        <form>
+          <div class="form-group">
+            <label for="Administrative">Administrative</label>
+            <input type="number" class="form-control" id="Administrative" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="Administrative_Duration">Administrative_Duration</label>
+            <input type="number" class="form-control" id="Administrative_Duration" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="Informational">Informational</label>
+            <input type="number" class="form-control" id="Informational" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="Informational_Duration">Informational_Duration</label>
+            <input type="number" class="form-control" id="Informational_Duration" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="ProductRelated">ProductRelated</label>
+            <input type="number" class="form-control" id="ProductRelated" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="BounceRates">BounceRates</label>
+            <input type="number" class="form-control" id="BounceRates" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="ExitRates">ExitRates</label>
+            <input type="number" class="form-control" id="ExitRates" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="PageValues">PageValues</label>
+            <input type="number" class="form-control" id="PageValues" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="SpecialDay">SpecialDay</label>
+            <input type="number" class="form-control" id="SpecialDay" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="'Weekend'">Weekend</label>
+            <input type="number" class="form-control" id="'Weekend'" placeholder="">
+          </div>
+          <div class="form-group">
+            <label for="Month">Month</label>
+            <select class="form-control" id="Month">
+              <option>Month_Aug</option>
+              <option>Month_Dec</option>
+              <option>Month_Feb</option>
+              <option>Month_Jul</option>
+              <option>Month_June</option>
+              <option>Month_Mar</option>
+              <option>Month_May</option>
+              <option>Month_Nov</option>
+              <option>Month_Oct</option>
+              <option>Month_Sep</option>
+            </select>
+          </div>
+
+
+
+
+          <div class="form-group">
+            <label for="exampleFormControlSelect1">Example select</label>
+            <select class="form-control" id="exampleFormControlSelect1">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlSelect2">Example multiple select</label>
+            <select multiple class="form-control" id="exampleFormControlSelect2">
+              <option>1</option>
+              <option>2</option>
+              <option>3</option>
+              <option>4</option>
+              <option>5</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="exampleFormControlTextarea1">Example textarea</label>
+            <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+          </div>
+        </form>
         <form class="needs-validation" novalidate>
           <div class="row">
             <div class="col-md-6 mb-3">
