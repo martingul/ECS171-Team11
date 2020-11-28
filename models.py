@@ -69,6 +69,15 @@ def create_keras_mlp(train_X, train_y):
               metrics=['accuracy'])
   return model
 
+def create_keras_mlp(learn_rate=None, input_dim=None):
+  # returns a new instance of keras sequential model with the structure and params we found worked best
+  # use with keras_gd because need input_dim to be passed as a parameter for sklearn KerasClassifier wrapper
+  model = keras.Sequential([layers.Dense(32, activation='sigmoid', input_dim=input_dim),
+                            layers.Dense(12, activation='sigmoid'),
+                            layers.Dense(1, activation='sigmoid')])
+  model.compile(optimizer=tf.keras.optimizers.Adam(lr=learn_rate), loss='mean_squared_error', metrics=['accuracy'])
+  return model
+
 def create_keras_mlp(train_X, train_y, activation='sigmoid', learning_rate=0.005, loss='mean_squared_error'):
   # create and return an instance of keras sequential model with custom parameters
     # Args:
@@ -83,7 +92,7 @@ def create_keras_mlp(train_X, train_y, activation='sigmoid', learning_rate=0.005
               metrics=['accuracy'])
   return model
 
-def train_eval_keras_mlp(model, train_X, train_y, test_X, test_y):
+def train_eval_keras_mlp(model, train_X, train_y, test_X, test_y, epochs=300, batch_size=32):
   # train and evaluate keras sequential model
   # prints out the precision and recall for train and test sets, classification report, and 
   # the training time of the model
@@ -96,7 +105,7 @@ def train_eval_keras_mlp(model, train_X, train_y, test_X, test_y):
   # Returns:
   #  - keras_test_probs: list of the predictions of the model when run on test set
   keras_start_time = time()
-  model_res = model.fit(train_X, train_y, batch_size=32, epochs=300)
+  model_res = model.fit(train_X, train_y, batch_size=batch_size, epochs=epochs)
   keras_train_time = time() - keras_start_time
 
   # evaluate model on train set and test set
@@ -192,6 +201,9 @@ def gd_keras_mlp(model, train_X, train_y):
   #  - train_y: dataframe of training set with class attribute only
   param_grid = dict(batch_size=[100, 150, 200, 300], epochs=[150, 200, 250, 300], learn_rate=[0.001, 0.005, 0.01, 0.05])
   grid_search(model, param_grid, train_X, train_y)
+
+  model = KerasClassifier(build_fn=create_keras_mlp, input_dim=train_X.shape[1], verbose=0)
+  gd_keras_mlp(model, train_X, train_y)
 
 def gd_mlpc(model, train_X, train_y):
   # perform gridsearch for hidden layer size, activation, and learning rate, and max iterations
