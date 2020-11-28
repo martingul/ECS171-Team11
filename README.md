@@ -1,13 +1,18 @@
 ECS 171
 
-## Instruction to Run the Web Demo
+## How to run the web demo
 
 1. Install dependencies 
-
 - fastapi
 - uvicorn
 - aiofiles
 - jinja2
+
+```
+    # can use this command to install dependencies
+    pip3 install xxx
+```
+
 
 2. Run the server
 ```python
