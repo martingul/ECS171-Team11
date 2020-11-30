@@ -65,7 +65,7 @@ async def predict(
     #with open("keras_mlp.pkl", 'rb') as file:
     #   Pickled_keras_mlp = pickle.load(file)
 
-    keras.models.load_model('keras')
+    keras_model = keras.models.load_model('keras')
 
 
     with open("svm.pkl", 'rb') as file:
@@ -110,8 +110,14 @@ async def predict(
     df.loc[0, Region] = 1
     df.loc[0, TrafficType] = 1
     df.loc[0, VisitorType] = 1
+    
+    print(df.columns)
 
-
+    # Three models
+    predicted_sk_mlp = Pickled_sklean_MLP.predict(df)
+    print(predicted_sk_mlp)
+    keras_model
+    Pickled_svm
 
     print(Pickled_sklean_MLP)
 
