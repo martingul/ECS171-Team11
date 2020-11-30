@@ -3,6 +3,7 @@ from fastapi import FastAPI, Form
 from starlette.requests import Request
 from starlette.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
+import pandas as pd
 import models
 import pickle
 
@@ -58,7 +59,33 @@ async def predict(
     with open("sklean_MLP.pkl", 'rb') as file:  
         Pickled_sklean_MLP= pickle.load(file)
 
+    with open("keras_mlp.pkl", 'rb') as file:
+        Pickled_keras_mlp = pickle.load(file)
+
+    with open("svm.pkl", 'rb') as file:
+        Pickled_svm = pickle.load(file)
+
+    names = [
+    'Administrative',
+    'Administrative_Duration',
+    'Informational',
+    'Informational_Duration',
+    'ProductRelated',
+    'BounceRates',
+    'ExitRates',
+    'PageValues',
+    'SpecialDay',
+    'Weekend',
+    'Month',
+    'OperatingSystems',
+    'Browser',
+    'Region',
+    'TrafficType',
+    'VisitorType'
+    ]
+
     print(Pickled_sklean_MLP)
+
 
     return templates.TemplateResponse(
         "index.html", {"request": request, "Administrative": Administrative}
