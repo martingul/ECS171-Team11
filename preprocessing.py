@@ -9,6 +9,7 @@ from sklearn.svm import OneClassSVM
 from sklearn.ensemble import IsolationForest
 from sklearn.neighbors import LocalOutlierFactor
 
+
 # TODO
 # shows information about independent variables i.e. distributions
 def show_var_info(df):
@@ -99,7 +100,7 @@ def main():
     df = pd.read_csv(path)
 
     # show input variable distributions
-    show_var_info(df)
+    # show_var_info(df) # might have some issues here
 
     # encode and normalize
     df = encode_vars(df)
@@ -122,7 +123,6 @@ def main():
     df = df.drop(outlier_isofor_index)
     # reset the index after dropping the rows
     df = df.reset_index(drop = True)
-    
+    return df
 
-if __name__ == "__main__":
-    main()        
+
