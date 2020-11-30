@@ -116,8 +116,12 @@ async def predict(
     # Three models
     predicted_sk_mlp = Pickled_sklean_MLP.predict(df)
     print(predicted_sk_mlp)
-    keras_model
-    Pickled_svm
+
+    # predicted_keras = keras_model.predict(df)
+    # print(predicted_keras)
+
+    predicted_svm = Pickled_svm.predict(df)
+    print(predicted_svm)
 
     print(Pickled_sklean_MLP)
 
