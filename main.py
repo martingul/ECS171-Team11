@@ -1,4 +1,7 @@
 import pandas as pd
+import numpy as np
+import tensorflow as tf
+from tensorflow import keras
 import preprocessing
 import models
 import pickle
@@ -23,8 +26,9 @@ def save_model():
     
     keras = models.create_keras_mlp(train_X, train_y)
     keras.fit(train_X, train_y,batch_size=32, epochs=300)
-    with open("keras_mlp.pkl","wb") as file:
-        pickle.dump(keras,file)
+    keras.save('keras')
+    #with open("keras_mlp.pkl","wb") as file:
+    #    pickle.dump(keras,file)
     
     
 

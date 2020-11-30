@@ -3,6 +3,9 @@ from fastapi import FastAPI, Form
 from starlette.requests import Request
 from starlette.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
+import numpy as np
+import tensorflow as tf
+from tensorflow import keras
 import pandas as pd
 import models
 import pickle
@@ -59,8 +62,11 @@ async def predict(
     with open("sklean_MLP.pkl", 'rb') as file:  
         Pickled_sklean_MLP= pickle.load(file)
 
-    with open("keras_mlp.pkl", 'rb') as file:
-        Pickled_keras_mlp = pickle.load(file)
+    #with open("keras_mlp.pkl", 'rb') as file:
+    #   Pickled_keras_mlp = pickle.load(file)
+
+    keras.models.load_model('keras')
+
 
     with open("svm.pkl", 'rb') as file:
         Pickled_svm = pickle.load(file)
