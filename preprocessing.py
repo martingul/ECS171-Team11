@@ -9,7 +9,7 @@ from sklearn.svm import OneClassSVM
 from sklearn.ensemble import IsolationForest
 from sklearn.neighbors import LocalOutlierFactor
 from sklearn.model_selection import train_test_split
-from imblearn.under_sampling import RandomUnderSampler, RandomOverSampler
+# from imblearn.under_sampling import RandomUnderSampler, RandomOverSampler
 
 
 # TODO
@@ -143,6 +143,6 @@ def main():
     df = df.drop(outlier_isofor_index)
     # reset the index after dropping the rows
     df = df.reset_index(drop = True)
-    return df
+    return getTrainTest(df)
 
 
