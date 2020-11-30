@@ -3,7 +3,9 @@ from fastapi import FastAPI, Form
 from starlette.requests import Request
 from starlette.staticfiles import StaticFiles
 from starlette.templating import Jinja2Templates
-import models as models
+import models
+import pickle
+
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
@@ -18,11 +20,11 @@ async def main(request: Request):
 @app.post("/predict/")
 async def predict(
     request: Request,
-    Administrative: int = Form(...),
+    Administrative: float = Form(...),
     Administrative_Duration: float = Form(...),
-    Informational: int = Form(...),
+    Informational: float = Form(...),
     Informational_Duration: float = Form(...),
-    ProductRelated: int = Form(...),
+    ProductRelated: float = Form(...),
     BounceRates: float = Form(...),
     ExitRates: float = Form(...),
     PageValues: float = Form(...),
@@ -53,8 +55,10 @@ async def predict(
     # print("VisitorType",VisitorType)
 
     # load pickle files and use them directly
+    with open("sklean_MLP.pkl", 'rb') as file:  
+        Pickled_sklean_MLP= pickle.load(file)
 
-
+    print(Pickled_sklean_MLP)
 
     return templates.TemplateResponse(
         "index.html", {"request": request, "Administrative": Administrative}

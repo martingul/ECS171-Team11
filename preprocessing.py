@@ -143,6 +143,9 @@ def main():
     df = df.drop(outlier_isofor_index)
     # reset the index after dropping the rows
     df = df.reset_index(drop = True)
+    print(df.dtypes)
     return getTrainTest(df)
 
 
+if __name__ == "__main__":
+    main()
