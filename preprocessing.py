@@ -8,6 +8,7 @@ from time import time
 from sklearn.svm import OneClassSVM
 from sklearn.ensemble import IsolationForest
 from sklearn.neighbors import LocalOutlierFactor
+from sklearn.model_selection import train_test_split
 
 
 # TODO
@@ -91,6 +92,14 @@ def outlier_lof(df):
     outliers_lof = [i for i in range(len(lof_res)) if lof_res[i] == -1]
     
     return outliers_lof
+
+def getTrainTest(df):
+    train, test = train_test_split(df, train_size=0.7, random_state=1)
+    train_X = train.drop('Revenue', axis=1)
+    train_y = train['Revenue']
+    test_X = test.drop('Revenue', axis=1)
+    test_y = test['Revenue']
+    return train_X, train_y, test_X, test_y
 
 # TODO
 # remove highly correlated features
