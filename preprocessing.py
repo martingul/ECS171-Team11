@@ -10,21 +10,7 @@ from sklearn.ensemble import IsolationForest
 from sklearn.neighbors import LocalOutlierFactor
 from sklearn.model_selection import train_test_split
 # from imblearn.under_sampling import RandomUnderSampler, RandomOverSampler
-
-
-# TODO
-# shows information about independent variables i.e. distributions
-def show_var_info(df):
-    months = df['Month'].copy()
-    months.replace({"Feb": 0, "Mar": 1, "May": 2, "June": 3, "Jul": 4, "Aug": 5, "Sep": 6, "Oct": 7, "Nov": 8, "Dec": 9}, inplace=True)
-    hist = months.hist(bins=10, figsize=(8,6))
-
-    hist = df['OperatingSystems'].hist(bins=8, figsize=(8,6))
-    hist = df['Browser'].hist(bins=13, figsize=(8,6))
-    hist = df['Region'].hist(bins=9, figsize=(8,6))
-    hist = df['TrafficType'].hist(bins=20, figsize=(8,6))
-    hist = df['VisitorType'].hist(bins=3, figsize=(8,6))
-    hist = df['SpecialDay'].hist(bins=6, figsize=(8,6))
+import seaborn as sns
 
 def encode_vars(df):
     # one-hot encode the categorical variables
@@ -94,6 +80,15 @@ def outlier_lof(df):
     
     return outliers_lof
 
+def remove_correlated_features(df):
+    df.drop(["Administrative", "Informational_Duration", "ProductRelated", "ExitRates",
+         "Browser_1", "Browser_11", "Browser_13",
+         "OperatingSystems_1", "OperatingSystems_3", "PageValues",
+         "VisitorType_Returning_Visitor", "VisitorType_Other"], 
+        axis = 1, inplace = True)
+    
+    return df
+
 def getTrainTest(df):
     train, test = train_test_split(df, train_size=0.7, random_state=1)
     train_X = train.drop('Revenue', axis=1)
@@ -112,21 +107,15 @@ def getUnderSampled(train_X, train_y):
   train_X_under, train_y_under = rus.fit_resample(train_X, train_y)
   return train_X_under, train_y_under
 
-# TODO
-# remove highly correlated features
-
 def main():
     path = "https://archive.ics.uci.edu/ml/machine-learning-databases/00468/online_shoppers_intention.csv"
     df = pd.read_csv(path)
 
-    # show input variable distributions
-    # show_var_info(df) # might have some issues here
-
-    # encode and normalize
+    # Encode and normalize
     df = encode_vars(df)
     df = normalize_vars(df)
 
-    # try various outlier detection methods
+    # Try various outlier detection methods
     numerics = ['int16', 'int32', 'int64', 'float16', 'float32', 'float64']
     nums = df.select_dtypes(include=numerics)
     
@@ -136,16 +125,14 @@ def main():
     outliers_lof_all = outlier_lof(df)
     outliers_lof_nums = outlier_lof(nums)
 
-    # TODO
-    # take out the rows with outliers
-    # use the isolation forest as the lowest outlier detected
+    # Use the isolation forest as the lowest outlier detected
     outlier_isofor_index = list(outliers_isofor.index.values)
     df = df.drop(outlier_isofor_index)
-    # reset the index after dropping the rows
     df = df.reset_index(drop = True)
+    
     print(df.dtypes)
     return getTrainTest(df)
 
-
 if __name__ == "__main__":
     main()
+    
