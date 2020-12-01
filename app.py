@@ -194,7 +194,7 @@ async def predict(
     print("svm's prediction: ", predicted_svm)
 
     return templates.TemplateResponse(
-        "index.html",
+        "display.html",
         {
             "request": request,
             "predicted_sk_mlp": predicted_sk_mlp,
