@@ -9,6 +9,7 @@ from tensorflow import keras
 import pandas as pd
 import models
 import pickle
+import uvicorn
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
@@ -209,6 +210,4 @@ async def predict(
     )
 
 if __name__ == "__main__":
-    import uvicorn
-
     uvicorn.run(app, host="127.0.0.1", port=8000)
