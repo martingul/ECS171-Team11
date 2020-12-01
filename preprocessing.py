@@ -32,7 +32,6 @@ def encode_vars(df):
     visitor_type = pd.get_dummies(df["VisitorType"], prefix = 'VisitorType')
     df = pd.concat([df, visitor_type], axis = 1)
 
-    #
     df["Weekend"] = pd.get_dummies(df["Weekend"], sparse = True)
 
     # make numerical

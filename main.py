@@ -22,8 +22,6 @@ def save_model():
     keras = models.create_keras_mlp(train_X, train_y)
     keras.fit(train_X, train_y,batch_size=32, epochs=300)
     keras.save('keras')
-    #with open("keras_mlp.pkl","wb") as file:
-    #    pickle.dump(keras,file)
     
 if __name__ == "__main__":
     save_model()

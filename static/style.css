@@ -1,3 +1,7 @@
+h6 {
+    font-size: 12px;
+}
+
 .big-text {
     font-size: 1.5rem; 
 }
@@ -19,12 +23,12 @@
     user-select: none;
 }
 
+.background-gradient {
+    background: linear-gradient(to left, #1c92d2, #dddddd);
+}
+
 @media (min-width: 768px) {
     .bd-placeholder-img-lg {
         font-size: 3.5rem;
     }
-}
-
-.background-gradient {
-    background: linear-gradient(to left, #1c92d2, #dddddd);
 }

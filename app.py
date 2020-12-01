@@ -45,14 +45,12 @@ async def predict(
     with open("sklean_MLP.pkl", "rb") as file:
         Pickled_sklean_MLP = pickle.load(file)
 
-    # with open("keras_mlp.pkl", 'rb') as file:
-    #   Pickled_keras_mlp = pickle.load(file)
-
     keras_model = keras.models.load_model("keras")
 
     with open("svm.pkl", "rb") as file:
         Pickled_svm = pickle.load(file)
 
+    # create dataframe
     df = pd.DataFrame(
         columns=[
             "Administrative",
@@ -156,9 +154,6 @@ async def predict(
     df.loc[0, Region] = 1
     df.loc[0, TrafficType] = 1
     df.loc[0, VisitorType] = 1
-
-    # Normalize features
-    # TODO
 
     # Remove highly correlated features behind the scenes
     df = remove_correlated_features(df)
