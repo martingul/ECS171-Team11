@@ -10,17 +10,13 @@ import pandas as pd
 import models
 import pickle
 
-
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
-
 @app.get("/")
 async def main(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
-
-
 
 @app.post("/predict/")
 async def predict(
@@ -203,7 +199,6 @@ async def predict(
             "predicted_svm": predicted_svm,
         },
     )
-
 
 if __name__ == "__main__":
     import uvicorn
