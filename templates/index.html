@@ -45,145 +45,157 @@
 
     <div class="row">
       <div class="col-md-12">
-        <form action="/predict/" enctype="application/x-www-form-urlencoded" method="post">
-          <div class="row">
-            <div class="col-md-3 mb-3 form-group">
+        <form class="text-center" action="/predict/" enctype="application/x-www-form-urlencoded" method="post">
+          <h5 class="mb-4 mt-4">Types of Pages Visited (integer value)</h5>
+          <div class="row text-center">
+            <div class="col-md-4 mb-3 form-group">
               <label for="Administrative">Administrative</label>
               <input type="number" name="Administrative" class="form-control" id="Administrative" placeholder="">
             </div>
-            <div class="col-md-3 mb-3 form-group">
-              <label for="Administrative_Duration">Administrative_Duration</label>
-              <input type="number" name="Administrative_Duration" class="form-control" id="Administrative_Duration" placeholder="">
-            </div>
-            <div class="col-md-3 mb-3 form-group">
+            <div class="col-md-4 mb-3 form-group">
               <label for="Informational">Informational</label>
               <input type="number" name="Informational" class="form-control" id="Informational" placeholder="">
             </div>
-            <div class="col-md-3 mb-3 form-group">
-              <label for="Informational_Duration">Informational_Duration</label>
+            <div class="col-md-4 mb-3 form-group">
+              <label for="ProductRelated">Product Related</label>
+              <input type="number" name="ProductRelated" class="form-control" id="ProductRelated" placeholder="">
+            </div>
+          </div>
+          <h5 class="mb-4 mt-4">Duration Stayed on Page (integer minutes)</h5>
+          <div class="row">
+            <div class="col-md-6 mb-3 form-group">
+              <label for="Administrative_Duration">Administrative Duration</label>
+              <input type="number" name="Administrative_Duration" class="form-control" id="Administrative_Duration" placeholder="">
+            </div>
+            <div class="col-md-6 mb-3 form-group">
+              <label for="Informational_Duration">Informational Duration</label>
               <input type="number" name="Informational_Duration" class="form-control" id="Informational_Duration" placeholder="">
             </div>
           </div>
+          <h5 class="mb-4 mt-4">Percentage of Actions Taken On Page (float 0-1)</h5>
           <div class="row">
-            <div class="col-md-3 mb-3 form-group">
-              <label for="ProductRelated">ProductRelated</label>
-              <input type="number" name="ProductRelated" class="form-control" id="ProductRelated" placeholder="">
+            <div class="col-md-4 mb-3 form-group">
+              <label for="BounceRates">Bounce Rates</label>
+              <input type="number" name="BounceRates" class="form-control" id="BounceRates">
             </div>
-            <div class="col-md-3 mb-3 form-group">
-              <label for="BounceRates">BounceRates</label>
-              <input type="number" name="BounceRates" class="form-control" id="BounceRates" placeholder="">
+            <div class="col-md-4 mb-3 form-group">
+              <label for="ExitRates">Exit Rates</label>
+              <input type="number" name="ExitRates" class="form-control" id="ExitRates">
             </div>
-            <div class="col-md-3 mb-3 form-group">
-              <label for="ExitRates">ExitRates</label>
-              <input type="number" name="ExitRates" class="form-control" id="ExitRates" placeholder="">
-            </div>
-            <div class="col-md-3 mb-3 form-group">
-              <label for="PageValues">PageValues</label>
-              <input type="number" name="PageValues" class="form-control" id="PageValues" placeholder="">
+            <div class="col-md-4 mb-3 form-group">
+              <label for="PageValues">Page Values</label>
+              <input type="number" name="PageValues" class="form-control" id="PageValues">
             </div>
           </div>
+          <h5 class="mb-4 mt-4">Miscellaneous</h5>
           <div class="row">
             <div class="col-md-3 mb-3 form-group">
-              <label for="SpecialDay">SpecialDay</label>
-              <input type="number" name="SpecialDay" class="form-control" id="SpecialDay" placeholder="">
+              <label for="SpecialDay">Special Day?</label>
+              <select name="SpecialDay" class="form-control" id="SpecialDay">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+              </select>
             </div>
             <div class="col-md-3 mb-3 form-group">
-              <label for="'Weekend'">Weekend</label>
-              <input type="number" name="Weekend" class="form-control" id="'Weekend'" placeholder="">
+              <label for="'Weekend'">Weekend?</label>
+              <select name="Weekend" class="form-control" id="Weekend">
+                <option value="1">Yes</option>
+                <option value="0">No</option>
+              </select>
             </div>
             <div class="col-md-3 mb-3 form-group">
               <label for="Month">Month</label>
               <select name="Month" class="form-control" id="Month">
-                <option>Month_Aug</option>
-                <option>Month_Dec</option>
-                <option>Month_Feb</option>
-                <option>Month_Jul</option>
-                <option>Month_June</option>
-                <option>Month_Mar</option>
-                <option>Month_May</option>
-                <option>Month_Nov</option>
-                <option>Month_Oct</option>
-                <option>Month_Sep</option>
+                <option value="Month_Feb">February</option>
+                <option value="Month_Mar">March</option>
+                <option value="Month_May">May<y/option>
+                <option value="Month_June">June</option>
+                <option value="Month_Jul">July</option>
+                <option value="Month_Aug">August</option>
+                <option value="Month_Sep">September</option>
+                <option value="Month_Oct">October</option>
+                <option value="Month_Nov">November</option>
+                <option value="Month_Dec">December</option>
               </select>
             </div>
             <div class="col-md-3 mb-3 form-group">
-              <label for="OperatingSystems">OperatingSystems</label>
+              <label for="OperatingSystems">Operating System Used</label>
               <select name="OperatingSystems" class="form-control" id="OperatingSystems">
-                <option>OperatingSystems_1</option>
-                <option>OperatingSystems_2</option>
-                <option>OperatingSystems_3</option>
-                <option>OperatingSystems_4</option>
-                <option>OperatingSystems_5</option>
-                <option>OperatingSystems_6</option>
-                <option>OperatingSystems_7</option>
-                <option>OperatingSystems_8</option>
+                <option value="OperatingSystems_1">1</option>
+                <option value="OperatingSystems_2">2</option>
+                <option value="OperatingSystems_3">3</option>
+                <option value="OperatingSystems_4">4</option>
+                <option value="OperatingSystems_5">5</option>
+                <option value="OperatingSystems_6">6</option>
+                <option value="OperatingSystems_7">7</option>
+                <option value="OperatingSystems_8">8</option>
               </select>
             </div>
           </div>
           <div class="row">
             <div class="col-md-3 mb-3 form-group">
-              <label for="Browser">Browser</label>
+              <label for="Browser">Browser Used</label>
               <select name="Browser" class="form-control" id="Browser">
-                <option>Browser_1</option>
-                <option>Browser_2</option>
-                <option>Browser_3</option>
-                <option>Browser_4</option>
-                <option>Browser_5</option>
-                <option>Browser_6</option>
-                <option>Browser_7</option>
-                <option>Browser_8</option>
-                <option>Browser_9</option>
-                <option>Browser_10</option>
-                <option>Browser_11</option>
-                <option>Browser_12</option>
-                <option>Browser_13</option>
+                <option value="Browser_1">1</option>
+                <option value="Browser_2">2</option>
+                <option value="Browser_3">3</option>
+                <option value="Browser_4">4</option>
+                <option value="Browser_5">5</option>
+                <option value="Browser_6">6</option>
+                <option value="Browser_7">7</option>
+                <option value="Browser_8">8</option>
+                <option value="Browser_9">9</option>
+                <option value="Browser_10">10</option>
+                <option value="Browser_11">11</option>
+                <option value="Browser_12">12</option>
+                <option value="Browser_13">13</option>
               </select>
             </div>
             <div class="col-md-3 mb-3 form-group">
-              <label for="Region">Region</label>
+              <label for="Region">Region From</label>
               <select name="Region" class="form-control" id="Region">
-                <option>Region_1</option>
-                <option>Region_2</option>
-                <option>Region_3</option>
-                <option>Region_4</option>
-                <option>Region_5</option>
-                <option>Region_6</option>
-                <option>Region_7</option>
-                <option>Region_8</option>
-                <option>Region_9</option>
+                <option value="Region_1">1</option>
+                <option value="Region_2">2</option>
+                <option value="Region_3">3</option>
+                <option value="Region_4">4</option>
+                <option value="Region_5">5</option>
+                <option value="Region_6">6</option>
+                <option value="Region_7">7</option>
+                <option value="Region_8">8</option>
+                <option value="Region_9">9</option>
               </select>
             </div>
             <div class="col-md-3 mb-3 form-group">
-              <label for="TrafficType">TrafficType</label>
+              <label for="TrafficType">Traffic Type</label>
               <select name="TrafficType" class="form-control" id="TrafficType">
-                <option>TrafficType_1</option>
-                <option>TrafficType_2</option>
-                <option>TrafficType_3</option>
-                <option>TrafficType_4</option>
-                <option>TrafficType_5</option>
-                <option>TrafficType_6</option>
-                <option>TrafficType_7</option>
-                <option>TrafficType_8</option>
-                <option>TrafficType_9</option>
-                <option>TrafficType_10</option>
-                <option>TrafficType_11</option>
-                <option>TrafficType_12</option>
-                <option>TrafficType_13</option>
-                <option>TrafficType_14</option>
-                <option>TrafficType_15</option>
-                <option>TrafficType_16</option>
-                <option>TrafficType_17</option>
-                <option>TrafficType_18</option>
-                <option>TrafficType_19</option>
-                <option>TrafficType_20</option>
+                <option value="TrafficType_1">1</option>
+                <option value="TrafficType_2">2</option>
+                <option value="TrafficType_3">3</option>
+                <option value="TrafficType_4">4</option>
+                <option value="TrafficType_5">5</option>
+                <option value="TrafficType_6">6</option>
+                <option value="TrafficType_7">7</option>
+                <option value="TrafficType_8">8</option>
+                <option value="TrafficType_9">9</option>
+                <option value="TrafficType_10">10</option>
+                <option value="TrafficType_11">11</option>
+                <option value="TrafficType_12">12</option>
+                <option value="TrafficType_13">13</option>
+                <option value="TrafficType_14">14</option>
+                <option value="TrafficType_15">15</option>
+                <option value="TrafficType_16">16</option>
+                <option value="TrafficType_17">17</option>
+                <option value="TrafficType_18">18</option>
+                <option value="TrafficType_19">19</option>
+                <option value="TrafficType_20">20</option>
               </select>
             </div>
             <div class="col-md-3 mb-3 form-group">
-              <label for="VisitorType">VisitorType</label>
+              <label for="VisitorType">Visitor Type</label>
               <select name="VisitorType" class="form-control" id="VisitorType">
-                <option>VisitorType_New_Visitor</option>
-                <option>VisitorType_Other</option>
-                <option>VisitorType_Returning_Visitor</option>
+                <option value="VisitorType_New_Visitor">New Visitor</option>
+                <option value="VisitorType_Returning_Visitor">Returning Visitor</option>
+                <option value="VisitorType_Other">Other</option>
               </select>
             </div>
           </div>

@@ -129,10 +129,11 @@ def main():
     outlier_isofor_index = list(outliers_isofor.index.values)
     df = df.drop(outlier_isofor_index)
     df = df.reset_index(drop = True)
+
+    df = remove_correlated_features(df)
     
     print(df.dtypes)
     return getTrainTest(df)
 
 if __name__ == "__main__":
     main()
-    
