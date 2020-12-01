@@ -21,6 +21,7 @@ async def main(request: Request):
     return templates.TemplateResponse("index.html", {"request": request})
 
 
+
 @app.post("/predict/")
 async def predict(
     request: Request,
