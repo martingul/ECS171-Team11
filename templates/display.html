@@ -88,7 +88,13 @@
       <div class="row">
         <div class="col-md-4">
           <h2>sk_mlp</h2>
-          <p>{{predicted_sk_mlp}}</p>
+          {% if predicted_sk_mlp[0] == 0%}
+          <p>didn't buy</p>
+          {% endif %}
+          {% if predicted_sk_mlp[0] == 1%}
+          <p>buy</p>
+          {% endif %}
+          <!-- <p>{{predicted_sk_mlp}}</p> -->
           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
             condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod.
             Donec sed odio dui. </p>
@@ -96,7 +102,13 @@
         </div>
         <div class="col-md-4">
           <h2>keras model</h2>
-          <p>{{predicted_keras}}</p>
+          {% if predicted_keras[0] == 0%}
+          <p>didn't buy</p>
+          {% endif %}
+          {% if predicted_keras[0] == 1%}
+          <p>buy</p>
+          {% endif %}
+          <!-- <p>{{predicted_keras}}</p> -->
           <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
             condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod.
             Donec sed odio dui. </p>
@@ -104,7 +116,13 @@
         </div>
         <div class="col-md-4">
           <h2>svm model</h2>
-          <p>{{predicted_svm}}</p>
+          {% if predicted_svm[0] == 0%}
+          <p>didn't buy</p>
+          {% endif %}
+          {% if predicted_svm[0] == 1%}
+          <p>buy</p>
+          {% endif %}
+          <!-- <p>{{predicted_svm}}</p> -->
           <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta
             felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
             massa justo sit amet risus.</p>
