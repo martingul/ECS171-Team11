@@ -6,11 +6,6 @@ import preprocessing
 import models
 import pickle
 
-# path = './online_shoppers_intention.csv'
-# df = pd.read_csv(path)
-# df = preprocess(df)
-
-
 def save_model():
     train_X, train_y, test_X, test_y = preprocessing.main()
 

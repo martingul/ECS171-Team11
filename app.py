@@ -10,6 +10,7 @@ import pandas as pd
 import models
 import pickle
 import uvicorn
+from preprocessing import remove_correlated_features, normalize_vars
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
@@ -40,24 +41,6 @@ async def predict(
     TrafficType: str = Form(...),
     VisitorType: str = Form(...),
 ):
-    # print("Administrative", Administrative)
-    # print("Administrative_Duration",Administrative_Duration)
-    # print("Informational",Informational)
-    # print("Informational_Duration",Informational_Duration)
-    # print("ProductRelated",ProductRelated)
-    # print("ProductRelated_Duration: ",ProductRelated_Duration)
-    # print("BounceRates",BounceRates)
-    # print("ExitRates",ExitRates)
-    # print("PageValues",PageValues)
-    # print("SpecialDay",SpecialDay)
-    # print("Weekend",Weekend)
-    # print("Month",Month)
-    # print("OperatingSystems",OperatingSystems)
-    # print("Browser",Browser)
-    # print("Region",Region)
-    # print("TrafficType",TrafficType)
-    # print("VisitorType",VisitorType)
-
     # load pickle files and use them directly
     with open("sklean_MLP.pkl", "rb") as file:
         Pickled_sklean_MLP = pickle.load(file)
@@ -174,12 +157,11 @@ async def predict(
     df.loc[0, TrafficType] = 1
     df.loc[0, VisitorType] = 1
 
+    # Normalize features
+    # TODO
+
     # Remove highly correlated features behind the scenes
-    df.drop(["Administrative", "Informational_Duration", "ProductRelated", "ExitRates",
-         "Browser_1", "Browser_11", "Browser_13",
-         "OperatingSystems_1", "OperatingSystems_3", "PageValues",
-         "VisitorType_Returning_Visitor", "VisitorType_Other"], 
-        axis = 1, inplace = True)
+    df = remove_correlated_features(df)
 
     # sk_mlp model
     predicted_sk_mlp = Pickled_sklean_MLP.predict(df)

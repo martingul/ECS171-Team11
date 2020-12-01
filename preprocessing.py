@@ -56,7 +56,6 @@ def normalize_vars(df):
     df.drop(columns = ["Revenue"], inplace = True)
     df["Revenue"] = revenue
     
-    # where false is referred to 0
     return df
 
 def outlier_SVM(df):
