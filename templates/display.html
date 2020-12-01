@@ -15,6 +15,9 @@
   <!-- <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet"> -->
   <link href="http://127.0.0.1:8000/static/css/bootstrap.min.css" rel="stylesheet">
   <style>
+    p {
+      font-size: 1.5rem; 
+    }
     .bd-placeholder-img {
       font-size: 1.125rem;
       text-anchor: middle;
@@ -37,7 +40,7 @@
 
 <body>
   <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-    <a class="navbar-brand" href="#">Prediction</a>
+    <a class="navbar-brand" href="/">Back</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
       aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -74,59 +77,42 @@
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
-      <div class="container">
+      <div class="container text-center">
         <h1 class="display-3">Predictions from our models</h1>
-        <p>This is a template for a simple marketing or informational website. It includes a large callout called a
-          jumbotron and three supporting pieces of content. Use it as a starting point to create something more unique.
-        </p>
-        <p><a class="btn btn-primary btn-lg" href="/" role="button">Make another prediction</a></p>
+        <p><a class="mt-5 btn btn-primary btn-lg" href="/" role="button">Make another prediction</a></p>
       </div>
     </div>
 
     <div class="container">
       <!-- Example row of columns -->
-      <div class="row">
+      <div class="row text-center">
         <div class="col-md-4">
-          <h2>sk_mlp</h2>
+          <h2>Sklearn MLP</h2>
           {% if predicted_sk_mlp[0] == 0%}
-          <p>didn't buy</p>
+          <p class="mt-5" style="color: firebrick;">Didn't buy</p>
           {% endif %}
           {% if predicted_sk_mlp[0] == 1%}
-          <p>buy</p>
+          <p class="mt-5" style="color: forestgreen;">Bought!</p>
           {% endif %}
-          <!-- <p>{{predicted_sk_mlp}}</p> -->
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-            condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod.
-            Donec sed odio dui. </p>
-          <p></p>
         </div>
         <div class="col-md-4">
-          <h2>keras model</h2>
+          <h2>Keras Sequential Model</h2>
           {% if predicted_keras[0] == 0%}
-          <p>didn't buy</p>
+          <p class="mt-5" style="color: firebrick;">Didn't buy</p>
           {% endif %}
           {% if predicted_keras[0] == 1%}
-          <p>buy</p>
+          <p class="mt-5" style="color: forestgreen;">Bought!</p>
           {% endif %}
-          <!-- <p>{{predicted_keras}}</p> -->
-          <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris
-            condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod.
-            Donec sed odio dui. </p>
-          <p></p>
         </div>
         <div class="col-md-4">
-          <h2>svm model</h2>
+          <h2>Support Vector Machine</h2>
           {% if predicted_svm[0] == 0%}
-          <p>didn't buy</p>
+          <p class="mt-5" style="color: firebrick;">Didn't buy</p>
           {% endif %}
           {% if predicted_svm[0] == 1%}
-          <p>buy</p>
+          <p class="mt-5" style="color: forestgreen;">Bought!</p>
           {% endif %}
           <!-- <p>{{predicted_svm}}</p> -->
-          <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta
-            felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum
-            massa justo sit amet risus.</p>
-          <p></p>
         </div>
       </div>
 
