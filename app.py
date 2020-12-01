@@ -26,6 +26,7 @@ async def predict(
     Informational: float = Form(...),
     Informational_Duration: float = Form(...),
     ProductRelated: float = Form(...),
+    ProductRelated_Duration: float = Form(...),
     BounceRates: float = Form(...),
     ExitRates: float = Form(...),
     PageValues: float = Form(...),
@@ -43,6 +44,7 @@ async def predict(
     # print("Informational",Informational)
     # print("Informational_Duration",Informational_Duration)
     # print("ProductRelated",ProductRelated)
+    # print("ProductRelated_Duration: ",ProductRelated_Duration)
     # print("BounceRates",BounceRates)
     # print("ExitRates",ExitRates)
     # print("PageValues",PageValues)
@@ -154,6 +156,7 @@ async def predict(
     df.loc[0, "Informational"] = Informational
     df.loc[0, "Informational_Duration"] = Informational_Duration
     df.loc[0, "ProductRelated"] = ProductRelated
+    df.loc[0, "ProductRelated_Duration"] = ProductRelated_Duration
     df.loc[0, "BounceRates"] = BounceRates
     df.loc[0, "ExitRates"] = ExitRates
     df.loc[0, "PageValues"] = PageValues
@@ -170,7 +173,12 @@ async def predict(
     df.loc[0, TrafficType] = 1
     df.loc[0, VisitorType] = 1
 
-    # print(df.columns)
+    # Remove highly correlated features behind the scenes
+    df.drop(["Administrative", "Informational_Duration", "ProductRelated", "ExitRates",
+         "Browser_1", "Browser_11", "Browser_13",
+         "OperatingSystems_1", "OperatingSystems_3", "PageValues",
+         "VisitorType_Returning_Visitor", "VisitorType_Other"], 
+        axis = 1, inplace = True)
 
     # sk_mlp model
     predicted_sk_mlp = Pickled_sklean_MLP.predict(df)

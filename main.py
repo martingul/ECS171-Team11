@@ -30,8 +30,6 @@ def save_model():
     #with open("keras_mlp.pkl","wb") as file:
     #    pickle.dump(keras,file)
     
-    
-
 if __name__ == "__main__":
     save_model()
     
