@@ -49,14 +49,17 @@ def normalize_vars(df):
                 "Informational", "Informational_Duration", 
                 "ProductRelated", "ProductRelated_Duration", 
                 "BounceRates", "ExitRates", "PageValues", "SpecialDay"]
+    scaler = MinMaxScaler()
     df[num_cols] = MinMaxScaler().fit_transform(df[num_cols])
+    return df
 
-    # rearrange the columns' order so that revenue would appear at the very end
-    revenue = df["Revenue"]
-    df.drop(columns = ["Revenue"], inplace = True)
-    df["Revenue"] = revenue
-    
-    # where false is referred to 0
+def normalize_vars(df, scaler):
+    # normalize the numerical variables
+    num_cols = ["Administrative", "Administrative_Duration", 
+                "Informational", "Informational_Duration", 
+                "ProductRelated", "ProductRelated_Duration", 
+                "BounceRates", "ExitRates", "PageValues", "SpecialDay"]
+    df[num_cols] = scaler.transform(df[num_cols])
     return df
 
 def outlier_SVM(df):

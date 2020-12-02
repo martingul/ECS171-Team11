@@ -10,6 +10,8 @@ import pandas as pd
 import models
 import pickle
 import uvicorn
+import joblib
+import preprocessing
 
 app = FastAPI()
 templates = Jinja2Templates(directory="templates")
@@ -69,6 +71,9 @@ async def predict(
 
     with open("svm.pkl", "rb") as file:
         Pickled_svm = pickle.load(file)
+
+    with open("min_max.pkl", "rb") as file:
+        scaler = joblib.load('min_max.pkl')
 
     df = pd.DataFrame(
         columns=[
@@ -173,6 +178,8 @@ async def predict(
     df.loc[0, Region] = 1
     df.loc[0, TrafficType] = 1
     df.loc[0, VisitorType] = 1
+
+    df = preprocessing.normalize_vars(df, scaler)
 
     # Remove highly correlated features behind the scenes
     df.drop(["Administrative", "Informational_Duration", "ProductRelated", "ExitRates",
