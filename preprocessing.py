@@ -32,7 +32,6 @@ def encode_vars(df):
     visitor_type = pd.get_dummies(df["VisitorType"], prefix = 'VisitorType')
     df = pd.concat([df, visitor_type], axis = 1)
 
-    #
     df["Weekend"] = pd.get_dummies(df["Weekend"], sparse = True)
 
     # make numerical
@@ -51,9 +50,13 @@ def normalize_vars(df):
                 "BounceRates", "ExitRates", "PageValues", "SpecialDay"]
     scaler = MinMaxScaler()
     df[num_cols] = MinMaxScaler().fit_transform(df[num_cols])
+    # rearrange the columns' order so that revenue would appear at the very end
+    revenue = df["Revenue"]
+    df.drop(columns = ["Revenue"], inplace = True)
+    df["Revenue"] = revenue
     return df
 
-def normalize_vars(df, scaler):
+def normalize_vars_with_scaler(df, scaler):
     # normalize the numerical variables
     num_cols = ["Administrative", "Administrative_Duration", 
                 "Informational", "Informational_Duration", 

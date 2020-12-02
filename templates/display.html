@@ -1,41 +1,14 @@
 <!doctype html>
 <html lang="en">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="">
-  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-  <meta name="generator" content="Jekyll v4.1.1">
-  <title>Jumbotron Template · Bootstrap</title>
-
-  <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/jumbotron/">
-
+  <title>ECS 171 Group 11 Project Demo</title>
+  
   <!-- Bootstrap core CSS -->
-  <!-- <link href="../assets/dist/css/bootstrap.min.css" rel="stylesheet"> -->
-  <link href="http://127.0.0.1:8000/static/css/bootstrap.min.css" rel="stylesheet">
-  <style>
-    p {
-      font-size: 1.5rem; 
-    }
-    .bd-placeholder-img {
-      font-size: 1.125rem;
-      text-anchor: middle;
-      -webkit-user-select: none;
-      -moz-user-select: none;
-      -ms-user-select: none;
-      user-select: none;
-    }
-
-    @media (min-width: 768px) {
-      .bd-placeholder-img-lg {
-        font-size: 3.5rem;
-      }
-    }
-  </style>
-  <!-- Custom styles for this template -->
-  <!-- <link href="jumbotron.css" rel="stylesheet"> -->
-  <link href="http://127.0.0.1:8000/static/css/jumbotron.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">  
+  <!-- CSS -->
+  <link href="{{ url_for('static', path='style.css') }}" rel="stylesheet">
 </head>
 
 <body>
@@ -48,17 +21,7 @@
 
     <div class="collapse navbar-collapse" id="navbarsExampleDefault">
       <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-
-        </li>
-        <li class="nav-item">
-
-        </li>
-        <li class="nav-item">
-
-        </li>
         <li class="nav-item dropdown">
-
           <div class="dropdown-menu" aria-labelledby="dropdown01">
             <a class="dropdown-item" href="#">Action</a>
             <a class="dropdown-item" href="#">Another action</a>
@@ -66,16 +29,10 @@
           </div>
         </li>
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-
-
-      </form>
     </div>
   </nav>
 
   <main role="main">
-
-    <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">
       <div class="container text-center">
         <h1 class="display-3">Predictions from our models</h1>
@@ -84,56 +41,43 @@
     </div>
 
     <div class="container">
-      <!-- Example row of columns -->
       <div class="row text-center">
         <div class="col-md-4">
           <h2>Sklearn MLP</h2>
           {% if predicted_sk_mlp[0] == 0%}
-          <p class="mt-5" style="color: firebrick;">Didn't buy</p>
+          <p class="mt-5 big-text nobought">Didn't buy</p>
           {% endif %}
           {% if predicted_sk_mlp[0] == 1%}
-          <p class="mt-5" style="color: forestgreen;">Bought!</p>
+          <p class="mt-5 big-text bought">Bought!</p>
           {% endif %}
         </div>
         <div class="col-md-4">
           <h2>Keras Sequential Model</h2>
           {% if predicted_keras[0] == 0%}
-          <p class="mt-5" style="color: firebrick;">Didn't buy</p>
+          <p class="mt-5 big-text nobought">Didn't buy</p>
           {% endif %}
           {% if predicted_keras[0] == 1%}
-          <p class="mt-5" style="color: forestgreen;">Bought!</p>
+          <p class="mt-5 big-text bought">Bought!</p>
           {% endif %}
         </div>
         <div class="col-md-4">
           <h2>Support Vector Machine</h2>
           {% if predicted_svm[0] == 0%}
-          <p class="mt-5" style="color: firebrick;">Didn't buy</p>
+          <p class="mt-5 big-text nobought">Didn't buy</p>
           {% endif %}
           {% if predicted_svm[0] == 1%}
-          <p class="mt-5" style="color: forestgreen;">Bought!</p>
+          <p class="mt-5 big-text bought">Bought!</p>
           {% endif %}
-          <!-- <p>{{predicted_svm}}</p> -->
         </div>
       </div>
-
       <hr>
-
-    </div> <!-- /container -->
-
+    </div>
   </main>
 
-  <footer class="container">
-
-  </footer>
-  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
-  </script>
-  <script>
-    window.jQuery || document.write('<script src="../assets/js/vendor/jquery.slim.min.js"><\/script>')
-  </script>
-
-  <script src="http://127.0.0.1:8000/static/js/bootstrap.bundle.min.js"></script>
-
+  <footer class="container"></footer>
+  
+  <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
 </body>
-
 </html>
