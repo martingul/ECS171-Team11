@@ -9,7 +9,6 @@ from sklearn.svm import OneClassSVM
 from sklearn.ensemble import IsolationForest
 from sklearn.neighbors import LocalOutlierFactor
 from sklearn.model_selection import train_test_split
-from imblearn.under_sampling import RandomUnderSampler, RandomOverSampler
 import seaborn as sns
 
 def encode_vars(df):
@@ -102,16 +101,6 @@ def getTrainTest(df):
     test_X = test.drop('Revenue', axis=1)
     test_y = test['Revenue']
     return train_X, train_y, test_X, test_y
-
-def getOverSampled(train_X, train_y):
-  ros = RandomOverSampler(random_state=2)
-  train_X_over, train_y_over = ros.fit_resample(train_X, train_y)
-  return train_X_over, train_y_over
-
-def getUnderSampled(train_X, train_y):
-  rus = RandomUnderSampler(random_state=2)
-  train_X_under, train_y_under = rus.fit_resample(train_X, train_y)
-  return train_X_under, train_y_under
 
 def main():
     path = "https://archive.ics.uci.edu/ml/machine-learning-databases/00468/online_shoppers_intention.csv"
