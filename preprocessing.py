@@ -9,7 +9,7 @@ from sklearn.svm import OneClassSVM
 from sklearn.ensemble import IsolationForest
 from sklearn.neighbors import LocalOutlierFactor
 from sklearn.model_selection import train_test_split
-# from imblearn.under_sampling import RandomUnderSampler, RandomOverSampler
+from imblearn.under_sampling import RandomUnderSampler, RandomOverSampler
 import seaborn as sns
 
 def encode_vars(df):
