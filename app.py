@@ -159,7 +159,7 @@ async def predict(
     df.loc[0, TrafficType] = 1
     df.loc[0, VisitorType] = 1
 
-    df = preprocessing.normalize_vars_with_scaler(df, scaler)
+    df = normalize_vars_with_scaler(df, scaler)
 
     # Remove highly correlated features behind the scenes
     df = remove_correlated_features(df)
