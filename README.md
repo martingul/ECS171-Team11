@@ -13,8 +13,9 @@ ECS 171
     pip3 install xxx
 ```
 
+2. Compile model files if needed through main.py (models are already pre-compiled in .pkl files).
 
-2. Run the server
+3. Run the server
 ```python
     python3 app.py 
 ```
