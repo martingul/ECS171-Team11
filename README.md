@@ -19,3 +19,5 @@ ECS 171
 ```python
     python3 app.py 
 ```
+
+The Web Demo is also available online at https://ecs171-team11.herokuapp.com/.
